@@ -16,7 +16,8 @@ void sift_down(int *array, size_t root, size_t end, size_t size)
 	size_t left_child, right_child, swap;
 	int temp;
 
-	for (left_child = (2*root) + 1; left_child <= end; left_child = (2*root) + 1)
+	for (left_child = (2 * root) + 1; left_child <= end;
+		left_child = (2 * root) + 1)
 	{
 		swap = root;
 		right_child = left_child + 1;
