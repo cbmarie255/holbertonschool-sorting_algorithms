@@ -30,5 +30,6 @@ void merge_sort_recursive(int *subarr, int *buff, size_t start, size_t end);
 void merge_sort(int *array, size_t size);
 void sift_down(int *array, size_t root, size_t end, size_t size);
 void heap_sort(int *array, size_t size);
+void radix_sort(int *array, size_t size);
 
 #endif
