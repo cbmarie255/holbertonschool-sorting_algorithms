@@ -28,7 +28,7 @@ void quick_sort(int *array, size_t size);
 void merge_subarr(int *subarr, int *buff, size_t strt, size_t mid, size_t end);
 void merge_sort_recursive(int *subarr, int *buff, size_t start, size_t end);
 void merge_sort(int *array, size_t size);
-4 void sift_down(int *array, size_t root, size_t end, size_t size);
+void sift_down(int *array, size_t root, size_t end, size_t size);
 void heap_sort(int *array, size_t size);
 
 #endif
