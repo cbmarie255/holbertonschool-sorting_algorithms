@@ -20,32 +20,27 @@ print_array(subarr + start, mid - start);
 printf("[right]: ");
 print_array(subarr + mid, end - mid);
 
-while (i < mid && j < end) 
+while (i < mid && j < end)
 {
-  if (subarr[i] < subarr[j]) {
+  if (subarr[i] < subarr[j]) 
+  {
     buff[k++] = subarr[i++];
-} 
-else 
-{
+  } 
+  else 
+  {
   buff[k++] = subarr[j++];
-}
+  }
 }
 
 while (i < mid) 
-{
   buff[k++] = subarr[i++];
-}
 
 while (j < end) 
-{
   buff[k++] = subarr[j++];
-}
 
 i = start, k = 0;
 while (i < end) 
-{
   subarr[i++] = buff[k++];
-}
 
 printf("[Done]: ");
 print_array(subarr + start, end - start);
@@ -83,17 +78,13 @@ void merge_sort(int *array, size_t size)
 {
 int *buff;
 
-if (array == NULL || size < 2) 
-{
+if (array == NULL || size < 2)
   return;
-}
 
 buff = malloc(sizeof(int) * size);
 
-if (buff == NULL) 
-{
+if (buff == NULL)
   return;
-}
 
 merge_sort_recursive(array, buff, 0, size);
 
