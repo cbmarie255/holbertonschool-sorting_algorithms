@@ -40,15 +40,17 @@ void sift_down(int *heap, size_t size, size_t idx)
  */
 void heap_sort(int *array, size_t size)
 {
+	size_t i;
+
 	if (!array || size < 2)
 		return;
 
 	/* Build max-heap */
-	for (size_t i = size / 2; i > 0; --i)
+	for (i = size / 2; i > 0; --i)
 	sift_down(array, size, i - 1);
 
 	/* Sort the heap */
-	for (size_t i = size - 1; i > 0; --i)
+	for (i = size - 1; i > 0; --i)
 	{
 		int tmp = array[0];
 		array[0] = array[i];
