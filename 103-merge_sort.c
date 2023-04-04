@@ -15,7 +15,7 @@
 void merge(int *array, size_t size, int *left, size_t left_size, int *right, size_t right_size)
 {
     int *result, *left_end, *right_end;
-    size_t i, j, k;
+    size_t i, k;
 
     result = malloc(sizeof(int) * size);
     if (!result)
@@ -24,7 +24,7 @@ void merge(int *array, size_t size, int *left, size_t left_size, int *right, siz
     left_end = left + left_size;
     right_end = right + right_size;
 
-    i = 0, j = 0, k = 0;
+    i = 0, k = 0;
     while (left < left_end && right < right_end)
     {
         if (*left <= *right)
