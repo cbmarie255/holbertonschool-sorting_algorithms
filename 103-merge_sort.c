@@ -22,10 +22,10 @@ print_array(subarr + mid, end - mid);
 
 while (i < mid && j < end)
 {
-if (subarr[i] < subarr[j])
-  buff[k++] = subarr[i++];
-else 
-  buff[k++] = subarr[j++];
+  if (subarr[i] < subarr[j])
+    buff[k++] = subarr[i++];
+  else
+    buff[k++] = subarr[j++];
 }
 
 while (i < mid) 
@@ -53,7 +53,7 @@ void merge_sort_recursive(int *subarr, int *buff, size_t start, size_t end)
 {
 size_t mid;
 
-if (end - start > 1) 
+if (end - start > 1)
 {
   mid = start + (end - start) / 2;
   merge_sort_recursive(subarr, buff, start, mid);
