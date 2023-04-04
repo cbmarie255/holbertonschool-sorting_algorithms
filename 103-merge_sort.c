@@ -76,8 +76,16 @@ void merge_sort_helper(int *array, size_t size)
  */
 void merge_sort(int *array, size_t size)
 {
-    if (!array || size < 2)
-        return;
+  int *buff;
 
-    merge_sort_helper(array, size);
+	if (array == NULL || size < 2)
+		return;
+
+	buff = malloc(sizeof(int) * size);
+	if (buff == NULL)
+		return;
+
+	merge_sort_helper(array, size);
+
+	free(buff);
 }
