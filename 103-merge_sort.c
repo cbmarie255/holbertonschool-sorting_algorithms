@@ -1,91 +1,88 @@
 #include "sort.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
- * merge - Merges two subarrays of the given array
- *
- * @array: The array to be sorted
- * @size: Number of elements in @array
- * @left: Pointer to the left subarray
- * @left_size: Number of elements in the left subarray
- * @right: Pointer to the right subarray
- * @right_size: Number of elements in the right subarray
+ * merge_subarray - Sort a subarray of integers.
+ * @subarray: A subarray of an array of integers to sort.
+ * @buff: A buffer to store the sorted subarray.
+ * @start: The start index of the array.
+ * @mid: The middle index of the array.
+ * @end: The end index of the array.
  */
-void merge(int *array, size_t size, int *left, size_t left_size, int *right, size_t right_size)
+void merge_subarray(int *subarray, int *buff, size_t start, size_t mid, size_t end)
 {
-    int *result, *left_end, *right_end;
-    size_t i, k;
+    size_t i = start, j = mid, k = 0;
 
-    result = malloc(sizeof(int) * size);
-    if (!result)
-        return;
+    printf("Merging...\n[left]: ");
+    print_array(subarray + start, mid - start);
 
-    left_end = left + left_size;
-    right_end = right + right_size;
+    printf("[right]: ");
+    print_array(subarray + mid, end - mid);
 
-    i = 0, k = 0;
-    while (left < left_end && right < right_end)
-    {
-        if (*left <= *right)
-            result[k++] = *left++;
-        else
-            result[k++] = *right++;
+    while (i < mid && j < end) {
+        buff[k++] = (subarray[i] < subarray[j]) ? subarray[i++] : subarray[j++];
     }
-    while (left < left_end)
-        result[k++] = *left++;
-    while (right < right_end)
-        result[k++] = *right++;
 
-    for (i = 0; i < size; ++i)
-        array[i] = result[i];
+    while (i < mid) {
+        buff[k++] = subarray[i++];
+    }
 
-    free(result);
+    while (j < end) {
+        buff[k++] = subarray[j++];
+    }
+
+    i = start, k = 0;
+    while (i < end) {
+        subarray[i++] = buff[k++];
+    }
+
+    printf("[Done]: ");
+    print_array(subarray + start, end - start);
 }
 
 /**
- * merge_sort_helper - Helper function for merge sort
- *
- * @array: The array to be sorted
- * @size: Number of elements in @array
+ * merge_sort_recursive - Implement the merge sort algorithm through recursion.
+ * @subarray: A subarray of an array of integers to sort.
+ * @buff: A buffer to store the sorted result.
+ * @start: The start index of the subarray.
+ * @end: The end index of the subarray.
  */
-void merge_sort_helper(int *array, size_t size)
+void merge_sort_recursive(int *subarray, int *buff, size_t start, size_t end)
 {
-    int *left, *right;
     size_t mid;
 
-    if (size < 2)
-        return;
-
-    mid = size / 2;
-
-    left = array;
-    right = array + mid;
-
-    merge_sort_helper(left, mid);
-    merge_sort_helper(right, size - mid);
-
-    merge(array, size, left, mid, right, size - mid);
+    if (end - start > 1) {
+        mid = start + (end - start) / 2;
+        merge_sort_recursive(subarray, buff, start, mid);
+        merge_sort_recursive(subarray, buff, mid, end);
+        merge_subarray(subarray, buff, start, mid, end);
+    }
 }
 
 /**
- * merge_sort - Sorts an array of integers in ascending order using the Merge sort algorithm
+ * merge_sort - Sort an array of integers in ascending
+ *              order using the merge sort algorithm.
+ * @array: An array of integers.
+ * @size: The size of the array.
  *
- * @array: The array to be sorted
- * @size: Number of elements in @array
+ * Description: Implements the top-down merge sort algorithm.
  */
 void merge_sort(int *array, size_t size)
 {
-  int *buff;
+    int *buff;
 
-	if (array == NULL || size < 2)
-		return;
+    if (array == NULL || size < 2) {
+        return;
+    }
 
-	buff = malloc(sizeof(int) * size);
-	if (buff == NULL)
-		return;
+    buff = malloc(sizeof(int) * size);
 
-	merge_sort_helper(array, size);
+    if (buff == NULL) {
+        return;
+    }
 
-	free(buff);
+    merge_sort_recursive(array, buff, 0, size);
+
+    free(buff);
 }
