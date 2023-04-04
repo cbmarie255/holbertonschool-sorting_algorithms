@@ -12,21 +12,21 @@
  */
 void merge_subarr(int *subarr, int *buff, size_t strt, size_t mid, size_t end)
 {
-  size_t i = strt, j = mid, k = 0;
+    size_t i = strt, j = mid, k = 0;
 
-  printf("Merging...\n[left]: ");
-  print_array(subarr + strt, mid - strt);
+    printf("Merging...\n[left]: ");
+    print_array(subarr + strt, mid - strt);
 
-  printf("[right]: ");
-  print_array(subarr + mid, end - mid);
+    printf("[right]: ");
+    print_array(subarr + mid, end - mid);
 
-  while (i < mid && j < end)
-  {
-    if (subarr[i] < subarr[j])
-      buff[k++] = subarr[i++];
-    else
-      buff[k++] = subarr[j++];
-  }
+    while (i < mid && j < end)
+    {
+      if (subarr[i] < subarr[j])
+        buff[k++] = subarr[i++];
+      else
+        buff[k++] = subarr[j++];
+    }
 
   while (i < mid)
     buff[k++] = subarr[i++];
