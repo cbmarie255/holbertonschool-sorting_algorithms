@@ -3,65 +3,65 @@
 #include <stdlib.h>
 
 /**
- * merge_subarray - Sort a subarray of integers.
- * @subarray: A subarray of an array of integers to sort.
- * @buff: A buffer to store the sorted subarray.
+ * merge_subarr - Sort a subarr of integers.
+ * @subarr: A subarr of an array of integers to sort.
+ * @buff: A buffer to store the sorted subarr.
  * @start: The start index of the array.
  * @mid: The middle index of the array.
  * @end: The end index of the array.
  */
-void merge_subarray(int *subarray, int *buff, size_t start, size_t mid, size_t end)
+void merge_subarr(int *subarr, int *buff, size_t start, size_t mid, size_t end)
 {
-  size_t i = start, j = mid, k = 0;
+size_t i = start, j = mid, k = 0;
 
-  printf("Merging...\n[left]: ");
-  print_array(subarray + start, mid - start);
+printf("Merging...\n[left]: ");
+print_array(subarr + start, mid - start);
 
-  printf("[right]: ");
-  print_array(subarray + mid, end - mid);
+printf("[right]: ");
+print_array(subarr + mid, end - mid);
 
-  while (i < mid && j < end) {
-  if (subarray[i] < subarray[j]) {
-    buff[k++] = subarray[i++];
-  } else {
-    buff[k++] = subarray[j++];
-  }
+while (i < mid && j < end) {
+if (subarr[i] < subarr[j]) {
+  buff[k++] = subarr[i++];
+} else {
+  buff[k++] = subarr[j++];
+}
 }
 
-  while (i < mid) {
-      buff[k++] = subarray[i++];
-  }
+while (i < mid) {
+  buff[k++] = subarr[i++];
+}
 
-  while (j < end) {
-      buff[k++] = subarray[j++];
-  }
+while (j < end) {
+  buff[k++] = subarr[j++];
+}
 
-  i = start, k = 0;
-  while (i < end) {
-      subarray[i++] = buff[k++];
-  }
+i = start, k = 0;
+while (i < end) {
+  subarr[i++] = buff[k++];
+}
 
-  printf("[Done]: ");
-  print_array(subarray + start, end - start);
+printf("[Done]: ");
+print_array(subarr + start, end - start);
 }
 
 /**
  * merge_sort_recursive - Implement the merge sort algorithm through recursion.
- * @subarray: A subarray of an array of integers to sort.
+ * @subarr: A subarr of an array of integers to sort.
  * @buff: A buffer to store the sorted result.
- * @start: The start index of the subarray.
- * @end: The end index of the subarray.
+ * @start: The start index of the subarr.
+ * @end: The end index of the subarr.
  */
-void merge_sort_recursive(int *subarray, int *buff, size_t start, size_t end)
+void merge_sort_recursive(int *subarr, int *buff, size_t start, size_t end)
 {
-  size_t mid;
+size_t mid;
 
-  if (end - start > 1) {
-    mid = start + (end - start) / 2;
-    merge_sort_recursive(subarray, buff, start, mid);
-    merge_sort_recursive(subarray, buff, mid, end);
-    merge_subarray(subarray, buff, start, mid, end);
-  }
+if (end - start > 1) {
+  mid = start + (end - start) / 2;
+  merge_sort_recursive(subarr, buff, start, mid);
+  merge_sort_recursive(subarr, buff, mid, end);
+  merge_subarr(subarr, buff, start, mid, end);
+}
 }
 
 /**
@@ -74,19 +74,19 @@ void merge_sort_recursive(int *subarray, int *buff, size_t start, size_t end)
  */
 void merge_sort(int *array, size_t size)
 {
-  int *buff;
+int *buff;
 
-  if (array == NULL || size < 2) {
-    return;
-  }
+if (array == NULL || size < 2) {
+  return;
+}
 
-  buff = malloc(sizeof(int) * size);
+buff = malloc(sizeof(int) * size);
 
-  if (buff == NULL) {
-    return;
-  }
+if (buff == NULL) {
+  return;
+}
 
-  merge_sort_recursive(array, buff, 0, size);
+merge_sort_recursive(array, buff, 0, size);
 
-  free(buff);
+free(buff);
 }
