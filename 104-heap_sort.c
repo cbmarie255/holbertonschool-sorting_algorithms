@@ -16,7 +16,7 @@ void sift_down(int *heap, size_t size, size_t idx)
 	while ((2 * root) + 1 < size)
 	{
 		size_t child = 2 * root + 1;
-		
+
 		if (child + 1 < size && heap[child] < heap[child + 1])
 		++child;
 		if (heap[root] < heap[child])
@@ -27,7 +27,7 @@ void sift_down(int *heap, size_t size, size_t idx)
 			heap[child] = tmp;
 			print_array(heap, size);
 			root = child;
-		}	
+		}
 		else
 			break;
 	}
